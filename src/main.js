@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-import router from './router/index';
 import { Swipe, SwipeItem, Button, Icon, Field, CellGroup, SwipeCell, Slider, Tabbar, TabbarItem } from 'vant';
 import './elementindex.css';
 import 'vant/lib/index.css';
@@ -18,5 +17,4 @@ app.use(SwipeCell);
 app.use(Slider);
 app.use(Tabbar);
 app.use(TabbarItem);
-app.use(router);
 app.mount('#app');

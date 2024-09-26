@@ -1,11 +1,9 @@
 <script setup>
-import { ref } from 'vue';
 import HheaderList from "../view/home/HheaderList.vue";
 import HimgSwiper from "../view/home/HimgSwiper.vue";
 import HmiddleList from "../view/home/HmiddleList.vue";
 import HmusicList from "../view/home/HmusicList.vue";
 import HyourSelect from "../view/home/HyourSelect.vue";
-const active = ref(0);
 </script>
 
 <template>
