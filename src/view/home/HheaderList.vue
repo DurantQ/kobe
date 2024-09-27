@@ -1,4 +1,12 @@
 <script setup>
+import { ref } from "vue";
+import { LohinRequst, ScaptCode } from "../../api/index";
+const userdata = ref({
+    keywords: '',
+    limit: '',
+    offset: '',
+    type:''
+});
 </script>
 
 <template>
