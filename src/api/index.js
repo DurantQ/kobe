@@ -8,5 +8,7 @@ export const HpRecommend = () =>
     axios.get('http://localhost:3000/recommend/resource');
 export const HpRecommendSongs = () =>
     axios.get('http://localhost:3000/recommend/songs');
+export const Spsearchcloud = (data) =>
+    axios.post('http://localhost:3000/search', data);
 
 
