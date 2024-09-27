@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import { SearchDefaultText, SearchCloud } from "../../api/index";
-const userdata = ref({
+const defaulttext = ref("");
+const Searchdata = ref({
     keywords: '',
     limit: '',
     offset: '',
@@ -9,7 +10,8 @@ const userdata = ref({
 });
 SearchDefaultText()
     .then((res) => {
-        console.log(res);
+        console.log(res.data.data.showKeyword);
+        defaulttext.value = res.data.data.showKeyword;
     })
 </script>
 
@@ -19,7 +21,7 @@ SearchDefaultText()
             <van-icon name="wap-nav" size="6vw" badge="99+" />
             <div class="search">
                 <van-icon name="search" size="6vw" />
-                <input type="text" placeholder="请输入你想找的歌">
+                <input type="text" :placeholder="defaulttext">
                 <van-icon name="scan" size="6vw" />
             </div>
             <van-icon name="service-o" size="6vw" />
