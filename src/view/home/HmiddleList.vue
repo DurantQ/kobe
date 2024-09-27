@@ -9,9 +9,11 @@ HpDragon()
         PageDragon1.value = (res.data.data).slice(0, 5);
         PageDragon2.value = (res.data.data).filter((_, index) => index > 4 && index < 11);
     });
+const day = ref(new Date().getDate());
 </script>
 <template>
     <header>
+        <div class="showday">{{ day }}</div>
         <van-swipe class="my-swipe" :loop="false" :show-indicators="false">
             <van-swipe-item>
                 <div class="section-list" v-for="item in PageDragon1" :key="item.name"
@@ -35,8 +37,16 @@ HpDragon()
 header {
     margin: auto;
     width: 89.34vw;
+    position: relative;
 }
-
+.showday{
+    position: absolute;
+    top: 30%;
+    left: 8%;
+    z-index: 66;
+    color: white;
+    font-size: 12px;
+}
 .my-swipe .van-swipe-item {
     display: flex;
     justify-content: space-around;
