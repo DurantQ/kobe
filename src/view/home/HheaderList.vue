@@ -1,12 +1,16 @@
 <script setup>
 import { ref } from "vue";
-import { LohinRequst, ScaptCode } from "../../api/index";
+import { SearchDefaultText, SearchCloud } from "../../api/index";
 const userdata = ref({
     keywords: '',
     limit: '',
     offset: '',
-    type:''
+    type: ''
 });
+SearchDefaultText()
+    .then((res) => {
+        console.log(res);
+    })
 </script>
 
 <template>
@@ -37,6 +41,7 @@ input {
     outline: none;
     background-color: transparent;
 }
+
 input::placeholder {
     color: #81839d;
     /* 设置placeholder文本的颜色 */

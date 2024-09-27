@@ -5,12 +5,10 @@ const PageSongs = ref([]);
 const PageSongs1 = ref([]);
 HpRecommendSongs()
     .then((res) => {
-        console.log(res.data.data.dailySongs);
         PageSongs.value = res.data.data.dailySongs;
         for (let i = 0; i < PageSongs.value.length; i += 3) {
             PageSongs1.value.push(PageSongs.value.slice(i, i + 3));
         };
-        console.log(PageSongs1.value);
     });
 </script>
 
