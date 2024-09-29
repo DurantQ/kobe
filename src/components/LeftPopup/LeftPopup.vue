@@ -1,12 +1,17 @@
 <script setup>
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
-import LeftPopupComp from './LeftPopupComp.vue'
+import LeftPopupCompOne from './LeftPopupCompOne.vue'
+import LeftPopupCompTwo from './LeftPopupCompTwo.vue';
+import LeftPopupCompTopRoundCorner from './LeftPopupCompTopRoundCorner.vue'
+import LeftPopupCompBottomRoundCorner from './LeftPopupCompBottomRoundCorner.vue'
 let showLeft = ref(true)
 const btn = () => {
     showLeft.value = !showLeft.value
 }
-let tempArr = [0, 1, 2, 3, 4]
+let tempArr3 = [0, 1, 2]
+let tempArr5 = [0, 1, 2, 3, 4]
+let tempArr6 = [0, 1, 2, 3, 4, 5]
 </script>
 
 
@@ -14,7 +19,7 @@ let tempArr = [0, 1, 2, 3, 4]
     <van-popup v-model:show="showLeft" position="left" :style="{ width: '85%', height: '100%' }"
         style="background-color: rgb(246, 248, 251);">
         <div style="width: 90%;height: 100%;margin-left: 5%;margin-right: 5%;">
-            <div style="display: flex;align-items:center; justify-content:space-between;background-color: #fff;">
+            <div style="display: flex;align-items:center; justify-content:space-between;background-color: rgb(246, 248, 251);margin-bottom: 8%;margin-top: 8%;">
                 <div style="display: flex;align-items:center;width: 90%;">
                     <van-image round width="2rem" height="2rem" src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
                         style="margin-right: 4%;">
@@ -25,8 +30,8 @@ let tempArr = [0, 1, 2, 3, 4]
                 <Icon icon="teenyicons:scan-solid" style="width: 1rem;height: 1rem;" />
             </div>
             <div
-                style="width: 100%;background:linear-gradient(45deg, rgb(42, 42, 43), rgb(80, 82, 87),rgb(55, 56, 61));height: 18%; border-radius: 1rem;display: flex;justify-content:center;align-items:center">
-                <div style="display: flex;width: 90%;height: 80%;flex-direction: column;justify-content:center">
+                style="width: 100%;background:linear-gradient(45deg, rgb(42, 42, 43), rgb(80, 82, 87),rgb(55, 56, 61));height: 18%; border-radius: 1rem;display: flex;justify-content:center;align-items:center;margin-bottom: 8%;">
+                <div style="display: flex;width: 90%;height: 80%;flex-direction: column;justify-content:center;">
                     <div style="display: flex; justify-content:space-between;width: 100%;height: 26%;margin-bottom: 2%;">
                         <div style="font-weight: 700;color: white;font-size: 1rem;">会员已过期</div>
                         <div
@@ -41,9 +46,36 @@ let tempArr = [0, 1, 2, 3, 4]
                     <div style="color: rgb(141, 142, 143);font-size: 0.8rem;">黑胶VIP学生特惠，仅需¥5/月!</div>
                 </div>
             </div>
-            <component :is="LeftPopupComp" style="margin-bottom: 4%;"></component>
-            <div style="border-radius: 2rem;border: 1px solid red;">
-                <component :is="LeftPopupComp" v-for="item in tempArr" style="margin-bottom: 0.1rem;"></component>
+            <component :is="LeftPopupCompOne" style="margin-bottom: 8%;"></component>
+            <div style="width: 100%; display: flex;flex-direction: column;margin-bottom: 8%;">
+                <!-- <div style="border-color: white;width: 100%;background-color: white; border-radius: 1rem;padding-top: 3%;padding-bottom: 3%;display: flex;flex-direction: column;justify-content: center;align-items: center;"> -->
+                <component :is="LeftPopupCompTopRoundCorner" style="">aaa</component>
+                <component :is="LeftPopupCompTwo" v-for="(item, index) in tempArr3" style="">%d%d
+                </component>
+                <component :is="LeftPopupCompBottomRoundCorner">bbb</component>
+                <!-- </div> -->
+            </div>
+            <div style="width: 100%;display: flex;flex-direction: column;margin-bottom: 8%;">
+                <component :is="LeftPopupCompTopRoundCorner" style="">aaa</component>
+                <component :is="LeftPopupCompTwo" v-for="(item, index) in tempArr5" style="">%d%d
+                </component>
+                <component :is="LeftPopupCompBottomRoundCorner">bbb</component>
+            </div>
+            <div style="width: 100%;display: flex;flex-direction: column;margin-bottom: 8%;">
+                <component :is="LeftPopupCompTopRoundCorner" style="">aaa</component>
+                <component :is="LeftPopupCompTwo" v-for="(item, index) in tempArr5" style="">%d%d
+                </component>
+                <component :is="LeftPopupCompBottomRoundCorner">bbb</component>
+            </div>
+            <div style="width: 100%;display: flex;flex-direction: column;margin-bottom: 8%;">
+                <component :is="LeftPopupCompTopRoundCorner" style="">aaa</component>
+                <component :is="LeftPopupCompTwo" v-for="(item, index) in tempArr5" style="">%d%d
+                </component>
+                <component :is="LeftPopupCompBottomRoundCorner">bbb</component>
+            </div>
+            <div style="width: 100%;display: flex;flex-direction: column;margin-bottom: 2rem;">
+                <component :is="LeftPopupCompTopRoundCorner" style="">aaa</component>
+                <component :is="LeftPopupCompBottomRoundCorner">bbb</component>
             </div>
         </div>
 
@@ -52,3 +84,6 @@ let tempArr = [0, 1, 2, 3, 4]
         点我
     </button>
 </template>
+
+
+<style scoped></style>
