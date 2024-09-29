@@ -1,10 +1,12 @@
 <script setup>
 // import HomePage from "./components/HomePage.vue";
+import LeftPopup from './components/LeftPopup/LeftPopup.vue';
 </script>
 
 <template>
   <div id="appvip">
-    <router-view></router-view>
+    <LeftPopup></LeftPopup>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 

@@ -1,7 +1,6 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue'
-
 import { Icon } from '@iconify/vue'
 import { useRoute, useRouter } from 'vue-router'
 const router = useRouter()
