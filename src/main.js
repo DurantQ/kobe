@@ -5,8 +5,14 @@ import 'vant/lib/index.css';
 import './style.css';
 import App from './App.vue';
 import router from './router'
+// import router from './test/router/index.js'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 const pinia = createPinia()
+
+
+
+pinia.use(piniaPluginPersistedstate);
 const app = createApp(App);
 
 app.use(Swipe);
@@ -27,3 +33,7 @@ app.use(Toast)
 app.use(pinia)
 app.use(router)
 app.mount('#app');
+
+
+// 在 main.js 或 main.ts 文件中
+

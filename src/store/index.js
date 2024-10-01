@@ -2,7 +2,13 @@ import { defineStore } from 'pinia'
 import { ref, computed, inject } from 'vue'
 
 export const useAlertsStore = defineStore('counter', () => {
-    const LoginStatus = ref(false)        // ref state
+    let showLeft = ref(false);
+    let LoginStatus = ref(false)        // ref state
+    let userName = ref('游客');
+    let userPicture = ref('');
+    let userCookie = ref('')
+
+
     const doubleCount = computed(() => { })     // computed getters
     function increment() {      // function actions
 
@@ -10,6 +16,11 @@ export const useAlertsStore = defineStore('counter', () => {
     // const appProvided = inject('appProvided')        // inject
 
     // ...
-    return { LoginStatus, doubleCount, increment }
+    return { showLeft, LoginStatus, userName, userPicture, userCookie, doubleCount, increment }
+}, {
+    persist: {
+        storage: localStorage,
+        paths: ['LoginStatus', 'userName', 'userPicture', 'userCookie']
+    }
 })
 
