@@ -1,6 +1,12 @@
 <script setup>
 import { ref } from "vue";
 import { SearchDefaultText, SearchCloud } from "../../api/index";
+import { useAlertsStore } from '../../store/index.js'
+let store = useAlertsStore()
+const btn = () => {
+    store.showLeft = !store.showLeft
+}
+
 const defaulttext = ref("");
 const Searchdata = ref({
     keywords: '',
@@ -18,7 +24,7 @@ SearchDefaultText()
 <template>
     <div>
         <header>
-            <van-icon name="wap-nav" size="6vw" badge="99+" />
+            <van-icon name="wap-nav" size="6vw" badge="99+" @click="btn" />
             <div class="search">
                 <van-icon name="search" size="6vw" />
                 <input type="text" :placeholder="defaulttext">

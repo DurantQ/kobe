@@ -6,11 +6,13 @@ import HmusicList from "../view/home/HmusicList.vue";
 import HyourSelect from "../view/home/HyourSelect.vue";
 import LeftPopup from './LeftPopup/LeftPopup.vue'
 
-import { useAlertsStore } from '../store'
+
 </script>
 
 <template>
-    <HheaderList></HheaderList>
+    <component :is="LeftPopup"></component>
+    <!-- <button >aaa</button> -->
+    <HheaderList ></HheaderList>
     <HimgSwiper></HimgSwiper>
     <HmiddleList></HmiddleList>
     <HmusicList></HmusicList>
