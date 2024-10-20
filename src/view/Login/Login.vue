@@ -1,14 +1,21 @@
 <script setup>
 import axios from 'axios';
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useAlertsStore } from '@/store'
+let store = useAlertsStore()
 const router = useRouter()
+
 let phone = ref()
 let password = ref('')
 let checked = ref(false);
 let showCenter = ref(false)
-
+// onMounted(() => {
+//     if (store.LoginStatus == true) {
+//         // router.push('/HomePage')
+//     }
+// })
 const CheckedStatus = () => {
     // console.log(checked.value);
 }

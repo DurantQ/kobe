@@ -28,7 +28,7 @@ export const res = () => {
                 console.log(state.LoginStatus,state.user,state.userPicture);
             })
             // store.
-            console.log(store);
+            // console.log(store);
             // store.LoginStatus = true
             // store.user = response.data.nickname
             // console.log(store.user);

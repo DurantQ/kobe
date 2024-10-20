@@ -1,39 +1,48 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import { GetScanKey, Scan, QrCodeStatus } from '../../../api/index'
+import { onMounted, onBeforeUnmount, ref } from 'vue';
+import { loginQrKey, loginQrCreate, loginQrCheck, LoginStatus } from '@/api'
 import { useRoute, useRouter } from 'vue-router'
-import { useAlertsStore } from '../../../store/index.js'
-let store = useAlertsStore()
+import { useAlertsStore } from '@/store'
+const store = useAlertsStore()
 const router = useRouter()
+
+let timer = null
+onBeforeUnmount(() => {
+    clearInterval(timer)
+    timer = null
+})
 onMounted(async () => {
-    let tempTime = Date.now()
-    const key = (await GetScanKey(tempTime)).data.data.unikey
-    const base64Url = (await Scan(key, tempTime)).data.data.qrimg
+    const key = (await loginQrKey()).data.data.unikey
+    const base64Url = (await loginQrCreate(key)).data.data.qrimg
     ScanBase64.value = base64Url
-    let nuserName = ''
-    let nuserPicture = ''
-    let nLoginStatus = ''
-    let nuserCookie = ''
-    setInterval(async () => {
-        const statusCode = (await QrCodeStatus(key, Date.now())).data
-        if (statusCode.code === 802) {
-            nuserName = statusCode.nickname
-            nuserPicture = statusCode.avatarUrl
-            nuserCookie = statusCode.cookie
-        }
+    timer = setInterval(async () => {
+        const statusCode = (await loginQrCheck(key)).data
         if (statusCode.code === 803) {
             store.$patch((state) => {
-                state.userPicture = nuserPicture
-                state.userName = nuserName
-                state.userCookie = nuserCookie
-                state.LoginStatus = true
+                state.userCookie = statusCode.cookie
             })
+            
         }
-        console.log(statusCode);
         if (Number(statusCode.code) === 800) {
-            router.push(`/Homepage`)
-            return
+            const loginStatus = (await LoginStatus(store.userCookie)).data.data;
+            // console.log(loginStatus);
+            if (loginStatus.code == 200) {
+                store.$patch((state) => {
+                    console.log('31', store);
+                    state.nickname = loginStatus.profile.nickname
+                    state.avatarUrl = loginStatus.profile.avatarUrl
+                    state.uid = loginStatus.profile.userId
+                    state.backgroundUrl = loginStatus.profile.backgroundUrl
+                    state.city = loginStatus.profile.city
+                    state.birthday = loginStatus.profile.birthday
+                    state.createTime = loginStatus.profile.createTime
+                })
+                router.push(`/Homepage`)
+            } else {
+                console.log('异常');
+            }
         }
+        // console.log(store.userCookie);
     }, 1200)
 })
 let ScanBase64 = ref('')

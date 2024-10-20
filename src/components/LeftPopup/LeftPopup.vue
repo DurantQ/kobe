@@ -5,11 +5,12 @@ import LeftPopupCompOne from './LeftPopupCompOne.vue'
 import LeftPopupCompTwo from './LeftPopupCompTwo.vue';
 import LeftPopupCompTopRoundCorner from './LeftPopupCompTopRoundCorner.vue'
 import LeftPopupCompBottomRoundCorner from './LeftPopupCompBottomRoundCorner.vue'
-import { useAlertsStore } from '../../store'
+import { useAlertsStore } from '@/store'
 let store = useAlertsStore()
-let userName = store.userName
-let userPicture = store.userPicture
+let nickname = store.nickname
+let avatarUrl = store.avatarUrl
 
+console.log(store);
 // let showLeft = ref(true)
 const btn = () => {
     showLeft.value = !showLeft.value
@@ -141,10 +142,10 @@ let tempArr6Bottom = [{
                 style="display: flex;align-items:center; justify-content:space-between;background-color: rgb(246, 248, 251);margin-bottom: 8%;margin-top: 8%;">
                 <div style="display: flex;align-items:center;width: 90%;">
                     <van-image round width="2rem" height="2rem"
-                        :src="userPicture === '' ? 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg' : userPicture"
+                        :src="avatarUrl === '' ? 'https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg' : avatarUrl"
                         style="margin-right: 4%;">
                     </van-image>
-                    <div>{{ userName === '' ? '游客' : userName }}</div>
+                    <div>{{ nickname === '' ? '哈基米' : nickname }}</div>
                     <Icon icon="material-symbols-light:keyboard-arrow-right" style="width: 1.4rem;height: 1.4rem;" />
                 </div>
                 <Icon icon="teenyicons:scan-solid" style="width: 1rem;height: 1rem;" />
