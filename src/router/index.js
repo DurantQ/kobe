@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAlertsStore } from '@/store'
+import { UseUserStore } from '@/store/UseUserStore'
 // import { createPinia } from 'pinia'
 
 // const pinia = createPinia()
@@ -24,7 +24,14 @@ const routes = [
     },
     {
         path: '/HomePage',
-        component: () => import('@/components/HomePage.vue')
+        component: () => import('@/components/HomePage.vue'),
+        children: [
+            {
+                path: 'My',
+                component: () => import('@/view/My/My.vue')
+            }
+
+        ]
     },
     {
         path: '/:catchAll(.*)',
@@ -39,15 +46,25 @@ const router = createRouter({
     routes
 })
 
-router.beforeEach((to, from, next) => {
+// router.beforeEach((to, from, next) => {
+//     if (to.path == '/') next('/Login')
+//     const store = useAlertsStore();
+//     // console.log(store.userCookie);
+//     // console.log(to.path);
+//     // if (store.userCookie != '') { next(`${to.path}`) }
 
-    const store = useAlertsStore();
-    console.log(to.path);
-    if (to.path == '/') next('/Login')
-    if (to.path == '/Homepage') store.userCookie == '' ? next('/Login') : next('/HomePage');
-    // if (to.path == '/Login') { pinia._persistence.clear();; console.log('login', store); }
-    next()
-})
+//     // if (to.path == '/Homepage') store.userCookie == '' ? next('/Login') : next('/HomePage');
+//     if (store.userCookie == '') {
+//         if (to.path == '/Login') {
+//             next()
+//         } else {
+//             router.push('/Login')
+//         }
+//     } else {
+//         next()
+//     }
+
+// })
 
 
 

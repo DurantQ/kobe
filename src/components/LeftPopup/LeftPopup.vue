@@ -5,15 +5,17 @@ import LeftPopupCompOne from './LeftPopupCompOne.vue'
 import LeftPopupCompTwo from './LeftPopupCompTwo.vue';
 import LeftPopupCompTopRoundCorner from './LeftPopupCompTopRoundCorner.vue'
 import LeftPopupCompBottomRoundCorner from './LeftPopupCompBottomRoundCorner.vue'
-import { useAlertsStore } from '@/store'
-let store = useAlertsStore()
-let nickname = store.nickname
-let avatarUrl = store.avatarUrl
+import { UseUserStore } from '@/store/UseUserStore.js'
+import { UsePopupStore } from '@/store/UsePopupStore.js'
+const UserStore = UseUserStore()
+const PopupStore = UsePopupStore()
+let nickname = UserStore.LoginStatus.profile.nickname
+let avatarUrl = UserStore.LoginStatus.profile.avatarUrl
+// UseUserUserStore
 
-console.log(store);
 // let showLeft = ref(true)
 const btn = () => {
-    showLeft.value = !showLeft.value
+
 }
 let tempArr3 = [{
     icon: 'streamline:shell',
@@ -89,7 +91,7 @@ let tempArr6Bottom = [{
     icon: 'arcticons:microsoft-defende',
     title: '云推歌'
 }]
-// console.log(store.user);
+// console.log(UserStore.user);
 
 // <Icon icon="lets-icons:message-light" />
 // <Icon icon="streamline:shell" />
@@ -128,14 +130,14 @@ let tempArr6Bottom = [{
 
 // <Icon icon="marketeq:exchange" />
 // <Icon icon="uil:sign-out-alt" />
-// console.log(store.user);
+// console.log(UserStore.user);
 </script>
 
 
 
 <template>
     <!-- <Icon icon="lets-icons:message-light" /> -->
-    <van-popup v-model:show="store.showLeft" position="left" :style="{ width: '85%', height: '100%' }"
+    <van-popup v-model:show="PopupStore.showLeft" position="left" :style="{ width: '85%', height: '100%' }"
         style="background-color: rgb(246, 248, 251);font-size: 0.8rem;">
         <div style="width: 90%;height: 100%;margin-left: 5%;margin-right: 5%;">
             <div

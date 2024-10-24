@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from 'vue';
-import { loginQrKey, loginQrCreate, loginQrCheck, LoginStatus } from '@/api'
+import { loginQrKey, loginQrCreate, loginQrCheck, LoginStatus, TopPlaylist } from '@/api'
 import { useRoute, useRouter } from 'vue-router'
-import { useAlertsStore } from '@/store'
-const store = useAlertsStore()
+import { UseUserStore } from '@/store/UseUserStore.js'
+const UserStore = UseUserStore()
 const router = useRouter()
 
 let timer = null
@@ -18,24 +18,19 @@ onMounted(async () => {
     timer = setInterval(async () => {
         const statusCode = (await loginQrCheck(key)).data
         if (statusCode.code === 803) {
-            store.$patch((state) => {
+            UserStore.$patch((state) => {
                 state.userCookie = statusCode.cookie
             })
-            
+
         }
         if (Number(statusCode.code) === 800) {
-            const loginStatus = (await LoginStatus(store.userCookie)).data.data;
+            const loginStatus = (await LoginStatus(UserStore.userCookie)).data.data;
+            const topPlaylist = (await TopPlaylist())
             // console.log(loginStatus);
             if (loginStatus.code == 200) {
-                store.$patch((state) => {
-                    console.log('31', store);
-                    state.nickname = loginStatus.profile.nickname
-                    state.avatarUrl = loginStatus.profile.avatarUrl
-                    state.uid = loginStatus.profile.userId
-                    state.backgroundUrl = loginStatus.profile.backgroundUrl
-                    state.city = loginStatus.profile.city
-                    state.birthday = loginStatus.profile.birthday
-                    state.createTime = loginStatus.profile.createTime
+                UserStore.$patch((state) => {
+                    state.LoginStatus = loginStatus
+                    state.TopPlaylist = topPlaylist
                 })
                 router.push(`/Homepage`)
             } else {
@@ -53,7 +48,5 @@ let ScanBase64 = ref('')
         <div style="transform: translate(-50%,-50%);top: 50%;left: 50%;position: absolute;">
             <img :src="ScanBase64" alt="">
         </div>
-
-
     </div>
 </template>

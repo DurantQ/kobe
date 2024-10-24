@@ -3,8 +3,8 @@ import axios from 'axios';
 import { ref, onMounted } from 'vue'
 import { Icon } from '@iconify/vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useAlertsStore } from '@/store'
-let store = useAlertsStore()
+import { UseUserStore } from '@/store/UseUserStore.js'
+let UserStore = UseUserStore()
 const router = useRouter()
 
 let phone = ref()
@@ -31,6 +31,7 @@ const login = (phone, password) => {
 //     return 
 // }
 const phoneLogin = (path) => {
+    // console.log('path',path);
     if (showCenter.value === false) {
         showCenter.value = true
     }
@@ -38,7 +39,6 @@ const phoneLogin = (path) => {
     if (checked.value === true) {
         router.push(path)
     }
-
 }
 const ScanLogin = () => {
     router.push('/Login/ScanLogin')

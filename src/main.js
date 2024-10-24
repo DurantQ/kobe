@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { Swipe, SwipeItem, Button, Icon, Field, CellGroup, SwipeCell, Slider, Tabbar, TabbarItem, Checkbox, CheckboxGroup, Popup, Toast, Image as VanImage } from 'vant';
+import { Swipe, SwipeItem, Button, Icon, Field, CellGroup, SwipeCell, Slider, Tabbar, TabbarItem, Checkbox, CheckboxGroup, Popup, Toast, Image as VanImage, Tabs, Tab, RadioGroup, Radio } from 'vant';
 import './elementindex.css';
 import 'vant/lib/index.css';
 import './style.css';
@@ -32,6 +32,8 @@ app.use(Toast)
     .use(VanImage)
 app.use(pinia)
 app.use(router)
+app.use(Tabs)
+app.use(Tab).use(Radio).use(RadioGroup)
 app.mount('#app');
 
 

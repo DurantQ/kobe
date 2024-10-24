@@ -2,6 +2,7 @@
 // import HomePage from "./components/HomePage.vue";
 // import LeftPopup from './components/LeftPopup/LeftPopup.vue';
 // import login from './test/login.vue'
+import My from './view/My/My.vue';
 </script>
 
 <template>
@@ -9,6 +10,7 @@
     <!-- <login></login> -->
     <!-- <LeftPopup></LeftPopup> -->
     <router-view></router-view>
+    <!-- <My></My> -->
   </div>
 </template>
 

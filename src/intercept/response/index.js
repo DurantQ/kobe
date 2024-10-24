@@ -1,9 +1,9 @@
 import axios from "axios";
 import { createPinia } from 'pinia'
-import { useAlertsStore } from '../../store'
+import { UseUserStore } from '@/store/UseUserStore.js'
 
 const pinia = createPinia()
-const store = useAlertsStore(pinia);
+const store = UseUserStore(pinia);
 const controller = new AbortController();
 
 export const res = () => {

@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from "vue";
 import { SearchDefaultText, SearchCloud } from "../../api/index";
-import { useAlertsStore } from '../../store/index.js'
-let store = useAlertsStore()
+import { UsePopupStore } from '@/store/UsePopupStore.js'
+let PopupStore = UsePopupStore()
 const btn = () => {
-    store.showLeft = !store.showLeft
+    PopupStore.$patch((state => {
+        state.showLeft = !state.showLeft
+    }))
 }
 
 const defaulttext = ref("");
